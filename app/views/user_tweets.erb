@@ -1,0 +1,4 @@
+<h1> You are viewing <%= @user.username %>'s tweets</h1>
+<% @tweets.each do |tweet| %>
+<p><%= tweet.content %></p>
+<% end %>
