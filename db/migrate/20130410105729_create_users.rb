@@ -4,7 +4,6 @@ class CreateUsers < ActiveRecord::Migration
       t.string :username
       t.string :oauth_token
       t.string :oauth_secret
-      t.string :user_id
 
       t.timestamps
     end

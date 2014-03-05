@@ -8,10 +8,13 @@
       <h1>Please fill out the form</h1>
       <form id="tweet_form" action="/tweet" method="POST">
         <label for="tweet">Type your tweet here:</label><br>
-        <textarea type="text" name="tweet" id="tweet" placeholder="e.g. I had an awesome sandwich for lunch."></textarea>
+        <textarea type="text" name="tweet" id="tweet" placeholder="e.g. I had an awesome sandwich for lunch."></textarea><br><br>
+        <label for="delay">Insert the number of minutes to delay the tweet</label><br>
+        <input type="text" name="delay" id="delay" value="0">
         <input type="submit" id="submit" value="Post that Tweet">
       </form>
     </div>
+    <p>You can leave the delay time at 0 for no delay</p>
     <div id="print-out"></div>
     <div id="pacman"></div>
   <% else %>

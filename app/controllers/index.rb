@@ -37,15 +37,18 @@ end
 
 post "/tweet" do
   @text = params[:tweet]
-  
-  @key = current_user.tweet(@text)
-  if @key
-    erb :tweeted, layout: !request.xhr?
+  delay = params[:delay].to_i
+  if delay <= 0
+    @job_id = current_user.tweet(@text)
   else
-    erb :failed_tweet, layout: !request.xhr?
+    @job_id = current_user.tweet_later(delay, @text)
+  end
+  return @job_id if request.xhr?
+  if @job_id
+    erb :tweeted
+  else
+    erb :failed_tweet
   end
 end
 
-get "/status/key" do
 
-end
