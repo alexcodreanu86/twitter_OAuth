@@ -15,6 +15,9 @@ require 'pg'
 require 'active_record'
 require 'logger'
 
+require 'pry'
+require 'pry-nav'
+
 require 'sinatra'
 require 'shotgun'
 
@@ -27,6 +30,13 @@ require 'twitter'
 APP_ROOT = Pathname.new(File.expand_path('../../', __FILE__))
 
 APP_NAME = APP_ROOT.basename.to_s
+
+
+env_config = YAML.load_file(APP_ROOT.join('keys.yml'))
+
+env_config.each do |key, value|
+  ENV[key] = value
+end
 
 # Set up the controllers and helpers
 Dir[APP_ROOT.join('app', 'controllers', '*.rb')].each { |file| require file }
