@@ -16,6 +16,10 @@ get '/sign_out' do
   redirect '/'
 end
 
+get '/status/:job_id' do
+  job_is_complete(params[:job_id])
+end
+
 get '/auth' do
   # the `request_token` method is defined in `app/helpers/oauth.rb`
   @access_token = request_token.get_access_token(:oauth_verifier => params[:oauth_verifier])
@@ -33,10 +37,15 @@ end
 
 post "/tweet" do
   @text = params[:tweet]
-  tweet_status = twitter_user.update(@text)
-  if tweet_status
+  
+  @key = current_user.tweet(@text)
+  if @key
     erb :tweeted, layout: !request.xhr?
   else
     erb :failed_tweet, layout: !request.xhr?
   end
+end
+
+get "/status/key" do
+
 end

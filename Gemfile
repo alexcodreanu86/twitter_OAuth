@@ -1,4 +1,4 @@
-source :rubygems
+source 'https://rubygems.org'
 
 # PostgreSQL driver
 gem 'pg'
@@ -13,6 +13,10 @@ gem 'activesupport'
 gem 'activerecord'
 
 gem 'rake'
+
+gem 'sidekiq'
+gem 'redis'
+
 
 gem 'pry'
 gem 'pry-nav'

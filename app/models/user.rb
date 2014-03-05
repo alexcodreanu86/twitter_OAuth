@@ -1,7 +1,12 @@
 class User < ActiveRecord::Base
-<<<<<<< HEAD
-=======
   validates :username, uniqueness: true
->>>>>>> f70e143c63465a6f9b1b197c12077f3a8b226641
-  # Remember to create a migration!
+  has_many :tweets
+
+
+  def tweet(status)
+    tweet = Tweet.create!(:status => status)
+    self.tweets << tweet
+    TweetWorker.perform_async(tweet.id)
+  end
+  
 end
