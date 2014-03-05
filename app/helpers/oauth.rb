@@ -20,3 +20,9 @@ def request_token
   end
   session[:request_token]
 end
+
+def current_user? 
+  session[:user_id] ? true : false
+end
+
+
