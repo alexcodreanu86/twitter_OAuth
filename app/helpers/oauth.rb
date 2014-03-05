@@ -21,8 +21,22 @@ def request_token
   session[:request_token]
 end
 
-def current_user? 
+def current_user
+  User.find(session[:user_id]) if session[:user_id]
+end
+
+def current_user?
   session[:user_id] ? true : false
 end
 
+
+
+def twitter_user
+  Twitter::Client.new(
+    :consumer_key => ENV['TWITTER_KEY'],
+    :consumer_secret => ENV['TWITTER_SECRET'],
+    :oauth_token => current_user.oauth_token,
+    :oauth_token_secret => current_user.oauth_secret)
+
+end
 

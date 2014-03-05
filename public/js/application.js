@@ -1,7 +1,21 @@
 $(document).ready(function() {
-  // This is called after the document has loaded in its entirety
-  // This guarantees that any elements we bind to will exist on the page
-  // when we try to bind to them
+    function enterPacman() {
+        $("#pacman").html("<h1> Wait for it... Proccessing request </h1><div id='spinner'></div>");
+    };
 
-  // See: http://docs.jquery.com/Tutorials:Introducing_$(document).ready()
+    function removePacman() {
+        $("#pacman").html("");
+    }
+
+    $('form').on('submit', function(e) {
+        e.preventDefault();
+        data = $(this).serialize();
+        enterPacman()
+        $.post('/tweet', data, function(response) {
+            $("#print-out").append(response);
+
+        })
+        setTimeout(removePacman, 2000)
+        $("textarea").val("");
+    });
 });

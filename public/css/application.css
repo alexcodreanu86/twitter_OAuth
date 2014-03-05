@@ -9,3 +9,10 @@ button a {
   text-decoration: none;
   color: black;
 }
+
+
+#spinner {
+  height: 25px;
+  width: 25px;
+  background-image: url('ajax-loader.gif');
+}
